@@ -8,9 +8,11 @@ responses = []
 def add_dependent_value(request, source, destination):
     dependent_values[destination] = source
     dependent_requests[request.name] = destination
-
+#What happens if we have the same key?
+#it wont work, so dont do that
 # dependent_values = {
 #     "card_id":"loyalty_card_id",
+#     "card_id":"loyalty_other_variable"<=====this wont work
 # }
 #
 # dependent_requests = {
@@ -18,17 +20,18 @@ def add_dependent_value(request, source, destination):
 # }
 
 def edit_dependent_values(request, responses):
-    for key, value in dependent_requests.items():
-        if key == request.name:
-            for response in responses:
+    try:
+        dependent_requests[request.name]
+        for response in responses:
                 #if "loyalty_card_id" in response
-                if dependent_values[value] in response["results"][0]:
+                if dependent_values[dependent_requests[request.name]] in response["results"][0]:
                     #set request.payload["card_id"] to response["results"][0]["loyalty_card_id"]
-                    request.payload[value] = response["results"][0][dependent_values[value]]
-    return request
+                    request.payload[dependent_requests[request.name]] = response["results"][0][dependent_values[dependent_requests[request.name]]
+    except:
+        raise Exception("could not find a dependent request, are you sure you have formatted the batches correctly?")
+    else:
+        return request
 
-#if "get_loyalty_id" is "get_loyalty_id"
-#request.payload["card_id"] = response["results"][0]["loyalty_card_id"]
 
 class Request(object):
     def __init__(self, name, url, method, payload, error_code, error_message):
