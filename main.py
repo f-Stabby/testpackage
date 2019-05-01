@@ -5,7 +5,7 @@ dependent_requests = {}
 responses = []
 
 
-def add_dependent_value(request, destination, source):
+def add_dependent_value(request, source, destination):
     dependent_values[destination] = source
     dependent_requests[request.name] = destination
 
