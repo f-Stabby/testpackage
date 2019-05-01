@@ -12,7 +12,7 @@ def add_dependent_value(request, source, destination):
 #it wont work, so dont do that
 # dependent_values = {
 #     "card_id":"loyalty_card_id",
-#     "card_id":"loyalty_other_variable"<=====this wont work
+#     "card_id":"loyalty_other_variable"<=====this wont work, although maybe we could try/except over the wrong values until it hits one that works
 # }
 #
 # dependent_requests = {
