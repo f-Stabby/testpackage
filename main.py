@@ -18,6 +18,8 @@ responses = []
 #TODO CONVERT DEPENDENT REQUESTS AND VALUES TO ARRAYS OF TUPLES
 
 def add_dependent_value(request, source, destination):
+    global dependent_values
+    global dependent_requests
     dependent_values[destination] = source
     dependent_requests[request.name] = destination
 
