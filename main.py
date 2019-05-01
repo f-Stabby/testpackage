@@ -189,6 +189,8 @@ def main(event, context):
     first_dependent_batch.append(get_email_guid)
     first_dependent_batch.append(get_login_guid)
     #execute batch
+    #CAN OCCUR IN THREAD!
+    #or create a thread for every request, whatever works best!
     for request in first_dependent_batch:
         if not request.start():
             return {
@@ -208,6 +210,8 @@ def main(event, context):
     second_dependent_batch.append(update_ping)
     second_dependent_batch.append(change_ams_email)
     #execute batch
+    #CAN OCCUR IN THREAD!
+    #or create a thread for every request, whatever works best!
     for request in second_dependent_batch:
         if not request.start():
             return {
