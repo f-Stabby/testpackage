@@ -169,9 +169,9 @@ def main(event, context):
         else:
             responses.append(request.response)
     #batch processing
-    edit_dependent_values(get_loyalty_id, responses)
-    edit_dependent_values(get_email_guid, responses)
-    edit_dependent_values(get_login_guid, responses)
+    get_loyalty_id = edit_dependent_values(get_loyalty_id, responses)
+    get_email_guid = edit_dependent_values(get_email_guid, responses)
+    get_login_guid = edit_dependent_values(get_login_guid, responses)
     #collect batch
     first_dependent_batch.append(get_loyalty_id)
     first_dependent_batch.append(get_email_guid)
@@ -186,10 +186,10 @@ def main(event, context):
         else:
             responses.append(request.response)
     #batch processing
-    edit_dependent_values(update_account_db, responses)
-    edit_dependent_values(update_mailchimp_email, responses)
-    edit_dependent_values(update_ping, responses)
-    edit_dependent_values(change_ams_email, responses)
+    update_account_db = edit_dependent_values(update_account_db, responses)
+    update_mailchimp_email = edit_dependent_values(update_mailchimp_email, responses)
+    update_ping = edit_dependent_values(update_ping, responses)
+    change_ams_email = edit_dependent_values(change_ams_email, responses)
     #collect batch
     second_dependent_batch.append(update_mailchimp_email)
     second_dependent_batch.append(update_account_db)
