@@ -4,10 +4,6 @@ dependent_values = {}
 dependent_requests = {}
 responses = []
 
-
-def add_dependent_value(request, source, destination):
-    dependent_values[destination] = source
-    dependent_requests[request.name] = destination
 #What happens if we have the same key?
 #it wont work, so dont do that
 # dependent_values = {
@@ -19,6 +15,11 @@ def add_dependent_value(request, source, destination):
 #     "get_loyalty_id":"card_id"
 #     "get_another_endpoint":"card_id" <===== this will still work. this should be turned into an array of tuples as well
 # }
+#TODO CONVERT DEPENDENT REQUESTS AND VALUES TO ARRAYS OF TUPLES
+
+def add_dependent_value(request, source, destination):
+    dependent_values[destination] = source
+    dependent_requests[request.name] = destination
 
 def edit_dependent_values(request, responses):
     try:
