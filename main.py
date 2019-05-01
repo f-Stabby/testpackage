@@ -220,6 +220,9 @@ def main(event, context):
     #execute batch
     #CAN OCCUR IN THREAD!
     #or create a thread for every request, whatever works best!
+    #some configuration needs to be set up for threading to work, like returning to a global result set then iterating
+    #over that set of results, perhaps instead of returning false from request.start() we could just iterate over the result set
+    #every time, thereby introducing a method for threading to return properly in the main function
     for request in second_dependent_batch:
         if not request.start():
             return {
