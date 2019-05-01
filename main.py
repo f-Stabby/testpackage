@@ -14,7 +14,7 @@ def add_dependent_value(request, source, destination):
 # }
 #
 # dependent_requests = {
-#     "get_loyalty_uid":"card_id"
+#     "get_loyalty_id":"card_id"
 # }
 
 def edit_dependent_values(request, responses):
