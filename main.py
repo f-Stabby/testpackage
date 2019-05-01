@@ -228,8 +228,7 @@ def main(event, context):
             responses.append(request.response)
     #done!
     #delete the globals
-    del dependent_requests
-    del dependent_variables
-    del responses
+    for var in globals():
+        del var
 
 
