@@ -9,14 +9,26 @@ def add_dependent_value(request, source, destination):
     dependent_values[destination] = source
     dependent_requests[request.name] = destination
 
+# dependent_values = {
+#     "card_id":"loyalty_card_id",
+# }
+#
+# dependent_requests = {
+#     "get_loyalty_uid":"card_id"
+# }
 
 def edit_dependent_values(request, responses):
-    for response in responses:
-        for key, value in dependent_requests.items():
-            if key == request.name:
-                request.payload[value] = response["results"][0][dependent_values[value]]
+    for key, value in dependent_requests.items():
+        if key == request.name:
+            for response in responses:
+                #if "loyalty_card_id" in response
+                if dependent_values[value] in response["results"][0]:
+                    #set request.payload["card_id"] to response["results"][0]["loyalty_card_id"]
+                    request.payload[value] = response["results"][0][dependent_values[value]]
     return request
 
+#if "get_loyalty_id" is "get_loyalty_id"
+#request.payload["card_id"] = response["results"][0]["loyalty_card_id"]
 
 class Request(object):
     def __init__(self, name, url, method, payload, error_code, error_message):
