@@ -34,16 +34,7 @@ class Request(object):
 
     def __str__(self):
         return self.name
-
-    def add_dependent_value(self, request, destination, source):
-        self.dependent_values[destination] = source
-        self.dependent_requests[request.name] = destination
-
-    def edit_dependent_values(self, request):
-        for key, value in self.dependent_requests.items():
-            if key == request.name:
-                request.payload[value] = self.response["results"][0][self.dependent_values[value]]
-
+    
     def make_request(self):
         if self.method == "POST":
             self.response = requests.post(self.url, headers=self.headers, json=self.payload)
