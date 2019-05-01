@@ -166,7 +166,8 @@ def main(event, context):
     )
     #set dependent values of first batch
     #takes in a request to be modified, a source name to parse from the response, and a destination name for the payload
-    #this can happen at the very beginning, so threads already have their format in a global.
+    #this can happen at the very beginning, so threads already have their format in a global. I guess you could pass it in
+    #if you really wanted to
     add_dependent_value(get_loyalty_id, "account_guid", "account_guid")
     add_dependent_value(get_email_guid, "account_guid", "account_guid")
     add_dependent_value(get_login_guid, "account_guid", "account_guid")
