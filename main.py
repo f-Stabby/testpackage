@@ -164,6 +164,8 @@ def main(event, context):
         "ERROR! Could not update ping"
     )
     #set dependent values of first batch
+    #takes in a request to be modified, a source name to parse from the response, and a destination name for the payload
+    #this can happen at the very beginning, so threads already have their format in a global.
     add_dependent_value(get_loyalty_id, "account_guid", "account_guid")
     add_dependent_value(get_email_guid, "account_guid", "account_guid")
     add_dependent_value(get_login_guid, "account_guid", "account_guid")
@@ -225,5 +227,9 @@ def main(event, context):
         else:
             responses.append(request.response)
     #done!
+    #delete the globals
+    del dependent_requests
+    del dependent_variables
+    del responses
 
 
